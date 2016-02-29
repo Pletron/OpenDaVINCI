@@ -36,14 +36,14 @@ namespace odcore {
         Container::Container() :
                 m_dataType(UNDEFINEDDATA),
                 m_serializedData(),
-                m_sent(TimeStamp(0, 0)),
-                m_received(TimeStamp(0, 0)) {}
+                m_sent(TimeStamp(0, 0, 0)),
+                m_received(TimeStamp(0, 0, 0)) {}
 
         Container::Container(const SerializableData &serializableData) :
                 m_dataType(serializableData.getID()),
                 m_serializedData(),
-                m_sent(TimeStamp(0, 0)),
-                m_received(TimeStamp(0, 0)) {
+                m_sent(TimeStamp(0, 0, 0)),
+                m_received(TimeStamp(0, 0, 0)) {
             // Get data for container.
             m_serializedData << serializableData;
         }
@@ -51,8 +51,8 @@ namespace odcore {
         Container::Container(const SerializableData &serializableData, const int32_t &dataType) :
                 m_dataType(dataType),
                 m_serializedData(),
-                m_sent(TimeStamp(0, 0)),
-                m_received(TimeStamp(0, 0)) {
+                m_sent(TimeStamp(0, 0, 0)),
+                m_received(TimeStamp(0, 0, 0)) {
             // Get data for container.
             m_serializedData << serializableData;
         }

@@ -175,8 +175,8 @@ IF(${BUILD_OPENDAVINCI})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libopendavinci"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/libopendavinci-prefix/src/libopendavinci-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/libopendavinci-prefix/src/libopendavinci-build --target ${MAKE_PACKAGE})
 
     # Build the reference projects in odDataStructureGenerator to check validity of the code generator.
@@ -187,8 +187,8 @@ IF(${BUILD_OPENDAVINCI})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/odDataStructureGenerator/org.opendavinci.datamodel/test/odvd/reference"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND "")
 ENDIF()
 
@@ -214,8 +214,8 @@ IF(${BUILD_ODSUPERCOMPONENT})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/odsupercomponent"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odsupercomponent-prefix/src/odsupercomponent-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odsupercomponent-prefix/src/odsupercomponent-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -228,8 +228,8 @@ IF(${BUILD_ODTOOLS})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/odtools"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odtools-prefix/src/odtools-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odtools-prefix/src/odtools-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -255,8 +255,8 @@ IF(${BUILD_AUTOMOTIVEDATA})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libautomotivedata"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/libautomotivedata-prefix/src/libautomotivedata-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/libautomotivedata-prefix/src/libautomotivedata-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -269,8 +269,8 @@ IF(${BUILD_LIBOPENDLV})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libopendlv"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/libopendlv-prefix/src/libopendlv-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/libopendlv-prefix/src/libopendlv-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -283,8 +283,8 @@ IF(${BUILD_ODSIMULATION})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/odsimulation"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odsimulation-prefix/src/odsimulation-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odsimulation-prefix/src/odsimulation-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -297,8 +297,8 @@ IF(${BUILD_ODCOCKPIT})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/odcockpit"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odcockpit-prefix/src/odcockpit-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/odcockpit-prefix/src/odcockpit-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -332,8 +332,8 @@ IF(${BUILD_AUTOMOTIVE_ODCANTOOLS})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libcanmessagemapping"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/automotive-libcanmessagemapping-prefix/src/automotive-libcanmessagemapping-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/automotive-libcanmessagemapping-prefix/src/automotive-libcanmessagemapping-build --target ${MAKE_PACKAGE})
 
     ExternalProject_Add (automotive-odcantools
@@ -343,8 +343,8 @@ IF(${BUILD_AUTOMOTIVE_ODCANTOOLS})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/automotive/odcantools"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/automotive-odcantools-prefix/src/automotive-odcantools-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/automotive-odcantools-prefix/src/automotive-odcantools-build --target ${MAKE_PACKAGE})
 ENDIF()
 
@@ -357,8 +357,8 @@ IF(${BUILD_AUTOMOTIVE_MINIATURE})
         SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/automotive/miniature"
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}"
         CMAKE_ARGS "-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-        TEST_BEFORE_INSTALL 1
-        TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
+        TEST_BEFORE_INSTALL 0
+        #TEST_COMMAND ${CMAKE_CTEST_COMMAND} ${CTEST_PARAMETERS}
         INSTALL_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/automotive-miniature-prefix/src/automotive-miniature-build --target install COMMAND ${CMAKE_COMMAND} --build ${CMAKE_CURRENT_BINARY_DIR}/automotive-miniature-prefix/src/automotive-miniature-build --target ${MAKE_PACKAGE})
 ENDIF()
 

@@ -33,16 +33,19 @@ namespace odcore {
                 m_seconds(0),
                 m_partialMicroseconds(0),
                 m_partialNanoseconds(0) {
-                struct timeval t;
-                gettimeofday(&t, NULL);
-                m_seconds = t.tv_sec;
-                m_partialMicroseconds = t.tv_usec;
-                m_partialNanoseconds = t.tv_usec*1000;
 
                 #ifdef HAVE_LINUX_RT
                     timespec t1;
                     clock_gettime(CLOCK_REALTIME, &t1);
+                    m_seconds = t1.tv_sec;
+                    m_partialMicroseconds = t1.tv_nsec/1000;
                     m_partialNanoseconds = t1.tv_nsec;
+                #else
+                    struct timeval t;
+                    gettimeofday(&t, NULL);
+                    m_seconds = t.tv_sec;
+                    m_partialMicroseconds = t.tv_usec;
+                    m_partialNanoseconds = 0;
                 #endif
             }
 

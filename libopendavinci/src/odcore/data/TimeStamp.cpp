@@ -443,7 +443,7 @@ namespace odcore {
         const string TimeStamp::toString() const {
             stringstream s;
             #ifdef HAVE_LINUX_RT
-                s << m_seconds << "s/" << m_microseconds << "us." << m_nanoseconds << "ns.";
+                s << m_seconds << "s/" << m_microseconds << "us./" << m_nanoseconds << "ns.";
             #else
                 s << m_seconds << "s/" << m_microseconds << "us.";
             #endif

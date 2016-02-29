@@ -118,6 +118,14 @@ namespace odcore {
                 long toMicroseconds() const;
 
                 /**
+                 * This method converts the specified time into
+                 * nanoseconds.
+                 *
+                 * @return This time converted into nanoseconds.
+                 */
+                long toNanoseconds() const;
+
+                /**
                  * This method returns the fractional microseconds
                  * to the next full second.
                  *

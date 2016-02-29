@@ -223,6 +223,10 @@ namespace odcore {
             return getSeconds() * 1000000L + getFractionalMicroseconds();
         }
 
+        long TimeStamp::toNanoseconds() const {
+            return getSeconds() * 1000000000L + getFractionalNanoseconds();
+        }
+
         int32_t TimeStamp::getFractionalMicroseconds() const {
             return m_microseconds;
         }

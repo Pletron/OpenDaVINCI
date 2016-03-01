@@ -39,7 +39,7 @@ namespace odcore {
                     clock_gettime(CLOCK_REALTIME, &t1);
                     m_seconds = t1.tv_sec;
                     m_partialMicroseconds = t1.tv_nsec/1000;
-                    m_partialNanoseconds = t1.tv_nsec;
+                    m_partialNanoseconds = t1.tv_nsec-(m_partialMicroseconds*1000);
                 #else
                     struct timeval t;
                     gettimeofday(&t, NULL);

@@ -459,7 +459,7 @@ namespace odcore {
         std::shared_ptr<odcore::wrapper::SerialPort> TimeStamp::m_serialPort = NULL;
         void TimeStamp::setupSerial(const string port, uint32_t baud_rate) {
             std::shared_ptr<odcore::wrapper::SerialPort> serial(odcore::wrapper::SerialPortFactory::createSerialPort(port, baud_rate));
-            m_serialPort = serial;
+            TimeStamp::m_serialPort = serial;
         }
 
         const string TimeStamp::writeNanoToSerial(const char* measurementID) {
@@ -467,7 +467,11 @@ namespace odcore {
             try {
                 stringstream s;
                 s << measurementID << ";" << ts.toNanoseconds() << "\r\n";
-                m_serialPort->send(s.str());
+                if (m_serialPort) {
+                    m_serialPort->send(s.str());
+                } else {
+                    return "Serial port not defined";
+                }
                 return "Successfully wrote toNanosecond() to serial";
             }
             catch(string &exception) {
@@ -480,7 +484,11 @@ namespace odcore {
             try {
                 stringstream s;
                 s << measurementID << ";" << ts.toMicroseconds() << "\r\n";
-                m_serialPort->send(s.str());
+                if (m_serialPort) {
+                    m_serialPort->send(s.str());
+                } else {
+                    return "Serial port not defined";
+                }
                 return "Successfully wrote toMicrosecond() to serial";
             }
             catch(string &exception) {
@@ -493,7 +501,11 @@ namespace odcore {
             try {
                 stringstream s;
                 s << measurementID << ";" << ts.toString() << "\r\n";
-                m_serialPort->send(s.str());
+                if (m_serialPort) {
+                    m_serialPort->send(s.str());
+                } else {
+                    return "Serial port not defined";
+                }
                 return "Successfully wrote toString() to serial";
             }
             catch(string &exception) {
@@ -503,8 +515,12 @@ namespace odcore {
 
         const string TimeStamp::writeMessageToSerial(const string message) {
             try {
-                m_serialPort->send(message);
-                return "Successfully wrote toString() to serial";
+                if (m_serialPort) {
+                    m_serialPort->send(message);
+                } else {
+                    return "Serial port not defined";
+                }
+                return "Successfully wrote message to serial";
             }
             catch(string &exception) {
                 return exception;

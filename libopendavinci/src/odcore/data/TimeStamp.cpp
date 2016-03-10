@@ -455,6 +455,62 @@ namespace odcore {
             return s.str();
         }
 
+
+        std::shared_ptr<odcore::wrapper::SerialPort> TimeStamp::m_serialPort = NULL;
+        void TimeStamp::setupSerial(const string port, uint32_t baud_rate) {
+            std::shared_ptr<odcore::wrapper::SerialPort> serial(odcore::wrapper::SerialPortFactory::createSerialPort(port, baud_rate));
+            m_serialPort = serial;
+        }
+
+        const string TimeStamp::writeNanoToSerial(const char* measurementID) {
+            TimeStamp ts = TimeStamp();
+            try {
+                stringstream s;
+                s << measurementID << ";" << ts.toNanoseconds() << "\r\n";
+                m_serialPort->send(s.str());
+                return "Successfully wrote toNanosecond() to serial";
+            }
+            catch(string &exception) {
+                return exception;
+            }
+        }
+
+        const string TimeStamp::writeMicroToSerial(const char* measurementID) {
+            TimeStamp ts = TimeStamp();
+            try {
+                stringstream s;
+                s << measurementID << ";" << ts.toMicroseconds() << "\r\n";
+                m_serialPort->send(s.str());
+                return "Successfully wrote toMicrosecond() to serial";
+            }
+            catch(string &exception) {
+                return exception;
+            }
+        }
+
+        const string TimeStamp::writeStringToSerial(const char* measurementID) {
+            TimeStamp ts = TimeStamp();
+            try {
+                stringstream s;
+                s << measurementID << ";" << ts.toString() << "\r\n";
+                m_serialPort->send(s.str());
+                return "Successfully wrote toString() to serial";
+            }
+            catch(string &exception) {
+                return exception;
+            }
+        }
+
+        const string TimeStamp::writeMessageToSerial(const string message) {
+            try {
+                m_serialPort->send(message);
+                return "Successfully wrote toString() to serial";
+            }
+            catch(string &exception) {
+                return exception;
+            }
+        }
+
         ostream& TimeStamp::operator<<(ostream &out) const {
             SerializationFactory& sf=SerializationFactory::getInstance();;
 

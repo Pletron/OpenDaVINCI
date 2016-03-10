@@ -223,6 +223,47 @@ namespace odcore {
                 static const string ShortName();
                 static const string LongName();
 
+
+                /**
+                 * This method sets up a serial port
+                 * for the object.
+                 * 
+                 */
+                static void setupSerial(const string port, uint32_t baud_rate);
+                static std::shared_ptr<odcore::wrapper::SerialPort> m_serialPort;
+
+                /**
+                 * This method writes the nanoseconds 
+                 * for today to a serial_port with a 
+                 * specified baud_rate
+                 * 
+                 */
+                static const string writeNanoToSerial(const char* measurementID);
+
+                /**
+                 * This method writes the microseconds 
+                 * for today to a serial_port with a 
+                 * specified baud_rate
+                 * 
+                 */
+                static const string writeMicroToSerial(const char* measurementID);
+
+                /**
+                 * This method writes the method 
+                 * toString() to a serial_port with a 
+                 * specified baud_rate
+                 * 
+                 */
+                static const string writeStringToSerial(const char* measurementID);
+
+                /**
+                 * This method writes a
+                 * message to a serial_port with a 
+                 * specified baud_rate
+                 * 
+                 */
+                static const string writeMessageToSerial(const string message);
+
             private:
                 int32_t m_seconds;
                 int32_t m_microseconds;

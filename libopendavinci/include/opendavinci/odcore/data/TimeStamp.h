@@ -24,6 +24,9 @@
 
 #include "opendavinci/odcore/opendavinci.h"
 #include "opendavinci/odcore/data/SerializableData.h"
+ 
+#include <opendavinci/odcore/wrapper/SerialPort.h>
+#include <opendavinci/odcore/wrapper/SerialPortFactory.h>
 
 namespace odcore {
     namespace data {

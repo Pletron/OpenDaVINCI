@@ -40,13 +40,13 @@ class TimeStampTest : public CxxTest::TestSuite {
         }
 
         void testAdd2() {
-            TimeStamp ts1(1, 900*1000, 900*1000*1000);
-            TimeStamp ts2(3, 200*1000, 200*1000*1000);
+            TimeStamp ts1(1, 800*1000, 190*1000*1000+50);
+            TimeStamp ts2(3, 100*1000, 10*1000*1000+10);
             TimeStamp ts = ts1 + ts2;
 
             TS_ASSERT(ts.getSecond() == 5);
             TS_ASSERT(ts.getFractionalMicroseconds() == 100*1000);
-            TS_ASSERT(ts.getFractionalNanoseconds() == 100*1000*1000);
+            TS_ASSERT(ts.getFractionalNanoseconds() == 60);
         }
 
         void testSub1() {
@@ -64,9 +64,14 @@ class TimeStampTest : public CxxTest::TestSuite {
             TimeStamp ts2(1, 5, 5);
             TimeStamp ts = ts1 - ts2;
 
+            cout << endl;
+            cout << ts.getSecond() << endl;
+            cout << ts.getFractionalMicroseconds() << endl;
+            cout << ts.getFractionalNanoseconds() << endl;
+
             TS_ASSERT(ts.getSecond() == 1);
-            TS_ASSERT(ts.getFractionalMicroseconds() == 999999);
-            TS_ASSERT(ts.getFractionalNanoseconds() == 999999999);
+            TS_ASSERT(ts.getFractionalMicroseconds() == 999998);
+            TS_ASSERT(ts.getFractionalNanoseconds() == 999);
         }
 
         void testTimeStamp28042009() {

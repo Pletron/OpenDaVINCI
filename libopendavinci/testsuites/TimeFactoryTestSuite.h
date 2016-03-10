@@ -92,6 +92,7 @@ class TimeFactoryTest : public CxxTest::TestSuite {
             TS_ASSERT(ts2.getSeconds() == 0);
             TS_ASSERT(ts2.getFractionalMicroseconds() == 0);
             TS_ASSERT(ts2.toMicroseconds() == 0);
+            TS_ASSERT(ts2.toNanoseconds() == 0);
 
             // Modify global time.
             controlledTF->setTime(ControlledTime(1, 2, 3));
@@ -102,6 +103,7 @@ class TimeFactoryTest : public CxxTest::TestSuite {
             TS_ASSERT(ts3.getFractionalMicroseconds() == 2);
             TS_ASSERT(ts3.getFractionalNanoseconds() == 3);
             TS_ASSERT(ts3.toMicroseconds() == 1000002);
+            TS_ASSERT(ts3.toNanoseconds() == 1000002003);
 
 
             // Destroy existing TimeFactory. At this time, controlledTF gets destroyed.
@@ -114,6 +116,7 @@ class TimeFactoryTest : public CxxTest::TestSuite {
             TimeStamp ts4;
             TS_ASSERT(ts4.getSeconds() > 1000);
             TS_ASSERT(!(ts.toMicroseconds() > ts4.toMicroseconds()));
+            TS_ASSERT(!(ts.toNanoseconds() > ts4.toNanoseconds()));
         }
 };
 

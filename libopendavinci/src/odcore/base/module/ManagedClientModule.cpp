@@ -384,10 +384,11 @@ namespace odcore {
 
                 // Enforce waiting to consume the rest of the time slice but ensure that there is no overflow.
                 const long ONE_SECOND_IN_MICROSECONDS = 1000 * 1000 * 1;
+                odcore::data::TimeStamp::writeNanoToSerial("4");
                 if ( (WAITING_TIME_OF_CURRENT_SLICE > 0) && (WAITING_TIME_OF_CURRENT_SLICE < ONE_SECOND_IN_MICROSECONDS) ) {
                     Thread::usleepFor(WAITING_TIME_OF_CURRENT_SLICE);
                 }
-
+                odcore::data::TimeStamp::writeNanoToSerial("1");
                 CLOG2 << "Starting next cycle at " << TimeStamp().toString() << endl;
             }
 
@@ -413,7 +414,9 @@ namespace odcore {
                 getWaitingTimeAndUpdateRuntimeStatistics();
 
                 // Wait for next time slice with wall clock.
+                odcore::data::TimeStamp::writeNanoToSerial("4");
                 ::clock_nanosleep(CLOCK_REALTIME, TIMER_ABSTIME, &m_waitForSlice, NULL);
+                odcore::data::TimeStamp::writeNanoToSerial("1");
 #endif
                 CLOG2 << "Starting next cycle at " << TimeStamp().toString() << endl;
             }

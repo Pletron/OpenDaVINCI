@@ -160,14 +160,14 @@ namespace odcore {
             int32_t sumMicroseconds = m_microseconds + t.getFractionalMicroseconds();
             int32_t sumNanoseconds = m_nanoseconds + t.getFractionalNanoseconds();
 
+            while (sumNanoseconds >= 1000L) {
+                sumMicroseconds++;
+                sumNanoseconds -= 1000L;
+            }
+
             while (sumMicroseconds > 1000000L) {
                 sumSeconds++;
                 sumMicroseconds -= 1000000L;
-            }
-
-            while (sumNanoseconds > 1000000000L) {
-                sumSeconds++;
-                sumNanoseconds -= 1000000000L;
             }
 
             return TimeStamp(sumSeconds, sumMicroseconds, sumNanoseconds);
@@ -178,15 +178,16 @@ namespace odcore {
             int32_t deltaMicroseconds = m_microseconds - t.getFractionalMicroseconds();
             int32_t deltaNanoseconds = m_nanoseconds - t.getFractionalNanoseconds();
 
+            while (deltaNanoseconds < 0) {
+                deltaMicroseconds--;
+                deltaNanoseconds += 1000L;
+            }
+            
             while (deltaMicroseconds < 0) {
                 deltaSeconds--;
                 deltaMicroseconds += 1000000L;
             }
 
-            while (deltaMicroseconds < 0) {
-                deltaSeconds--;
-                deltaNanoseconds += 1000000000L;
-            }
 
             return TimeStamp(deltaSeconds, deltaMicroseconds, deltaNanoseconds);
         }
@@ -224,7 +225,7 @@ namespace odcore {
         }
 
         long TimeStamp::toNanoseconds() const {
-            return getSeconds() * 1000000000L + getFractionalNanoseconds();
+            return getSeconds() * 1000000000L + (getFractionalMicroseconds() * 1000L + getFractionalNanoseconds());
         }
 
         int32_t TimeStamp::getFractionalMicroseconds() const {
@@ -465,6 +466,9 @@ namespace odcore {
             s->write(CRC32 < OPENDAVINCI_CORE_STRINGLITERAL3('m', 'i', 'c') >::RESULT,
                     m_microseconds);
 
+            s->write(CRC32 < OPENDAVINCI_CORE_STRINGLITERAL3('n', 'a', 'n') >::RESULT,
+                    m_nanoseconds);
+
             return out;
         }
 
@@ -478,6 +482,9 @@ namespace odcore {
 
             d->read(CRC32 < OPENDAVINCI_CORE_STRINGLITERAL3('m', 'i', 'c') >::RESULT,
                    m_microseconds);
+
+            d->read(CRC32 < OPENDAVINCI_CORE_STRINGLITERAL3('n', 'a', 'n') >::RESULT,
+                   m_nanoseconds);
 
             return in;
         }

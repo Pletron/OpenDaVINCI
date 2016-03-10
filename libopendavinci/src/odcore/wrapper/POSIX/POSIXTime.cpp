@@ -18,6 +18,7 @@
  */
 
 #include <sys/time.h>
+#include <math.h>
 
 #ifdef HAVE_LINUX_RT
     #include <time.h>
@@ -38,7 +39,7 @@ namespace odcore {
                     timespec t1;
                     clock_gettime(CLOCK_REALTIME, &t1);
                     m_seconds = t1.tv_sec;
-                    m_partialMicroseconds = t1.tv_nsec/1000;
+                    m_partialMicroseconds = trunc(t1.tv_nsec/1000);
                     m_partialNanoseconds = t1.tv_nsec-(m_partialMicroseconds*1000);
                 #else
                     struct timeval t;

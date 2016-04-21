@@ -455,7 +455,6 @@ namespace odcore {
             return s.str();
         }
 
-
         std::shared_ptr<odcore::wrapper::SerialPort> TimeStamp::m_serialPort = NULL;
         void TimeStamp::setupSerial(const string port, uint32_t baud_rate) {
             std::shared_ptr<odcore::wrapper::SerialPort> serial(odcore::wrapper::SerialPortFactory::createSerialPort(port, baud_rate));
@@ -525,6 +524,21 @@ namespace odcore {
             catch(string &exception) {
                 return exception;
             }
+        }
+
+        void TimeStamp::accept(Visitor &v) {
+            v.beginVisit();
+            v.visit(CRC32 < OPENDAVINCI_CORE_STRINGLITERAL3('s', 'e', 'c') >::RESULT,
+                    1,
+                    "TimeStamp.seconds",
+                    "seconds",
+                    m_seconds);
+            v.visit(CRC32 < OPENDAVINCI_CORE_STRINGLITERAL3('m', 'i', 'c') >::RESULT,
+                    2,
+                    "TimeStamp.microseconds",
+                    "microseconds",
+                    m_microseconds);
+            v.endVisit();
         }
 
         ostream& TimeStamp::operator<<(ostream &out) const {

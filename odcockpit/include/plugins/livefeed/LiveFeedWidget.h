@@ -21,13 +21,14 @@
 #ifndef COCKPIT_PLUGINS_LIVEFEEDWIDGET_H_
 #define COCKPIT_PLUGINS_LIVEFEEDWIDGET_H_
 
-#include <qobjectdefs.h>
-#include <qwidget.h>
+#include <QtCore>
+#include <QtGui>
 
 #include <map>
 #include <memory>
 #include <string>
 
+#include "opendavinci/odcore/base/Mutex.h"
 #include "opendavinci/odcore/io/conference/ContainerListener.h"
 
 class QTreeWidget;
@@ -82,6 +83,7 @@ namespace cockpit {
                     virtual void nextContainer(Container &c);
 
                 private:
+                    odcore::base::Mutex m_dataViewMutex;
                     unique_ptr<QTreeWidget> m_dataView;
                     map<string, QTreeWidgetItem* > m_dataToType;
 

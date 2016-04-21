@@ -23,6 +23,7 @@
 #include <string>
 
 #include "opendavinci/odcore/opendavinci.h"
+#include "opendavinci/odcore/base/Visitable.h"
 #include "opendavinci/odcore/data/SerializableData.h"
  
 #include <opendavinci/odcore/wrapper/SerialPort.h>
@@ -36,7 +37,8 @@ namespace odcore {
         /**
          * This class can be used for time computations.
          */
-        class OPENDAVINCI_API TimeStamp : public SerializableData {
+        class OPENDAVINCI_API TimeStamp : public SerializableData,
+                                          public odcore::base::Visitable {
             private:
                 enum CUMULATIVE_DAYS {
                     January = 31,   // 31
@@ -226,7 +228,7 @@ namespace odcore {
                 static const string ShortName();
                 static const string LongName();
 
-
+            public:
                 /**
                  * This method sets up a serial port
                  * for the object.
@@ -266,6 +268,9 @@ namespace odcore {
                  * 
                  */
                 static const string writeMessageToSerial(const string message);
+
+            public:
+                virtual void accept(odcore::base::Visitor &v);
 
             private:
                 int32_t m_seconds;

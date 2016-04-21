@@ -49,7 +49,13 @@ namespace odcore {
             m_fields.push_back(f);
         }
 
+        uint32_t Message::getNumberOfFields() const {
+            return m_fields.size();
+        }
+
         void Message::accept(Visitor &v) {
+            v.beginVisit();
+
             vector<std::shared_ptr<AbstractField> >::iterator it = m_fields.begin();
             while (it != m_fields.end()) {
                 switch((*it)->getFieldDataType()) {
@@ -149,6 +155,8 @@ namespace odcore {
 
                 ++it;
             }
+
+            v.endVisit();
         }
 
         std::shared_ptr<odcore::data::reflection::AbstractField> Message::getFieldByLongIdentifierOrShortIdentifier(const uint32_t &longIdentifier, const uint8_t &shortIdentifier, bool &found) {

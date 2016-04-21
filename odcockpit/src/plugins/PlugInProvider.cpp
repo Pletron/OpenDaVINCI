@@ -18,9 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <qobjectdefs.h>
-#include <qstring.h>
-#include <qwidget.h>
+#include <QtCore>
+#include <QtGui>
 
 #include <iostream>
 
@@ -31,14 +30,17 @@
 #include "plugins/configurationviewer/ConfigurationViewerPlugIn.h"
 #include "plugins/controller/ControllerPlugIn.h"
 #include "plugins/environmentviewer/EnvironmentViewerPlugIn.h"
-#include "plugins/iruscharts/IrUsChartsPlugIn.h"
 #include "plugins/irusmap/IrUsMapPlugIn.h"
 #include "plugins/livefeed/LiveFeedPlugIn.h"
 #include "plugins/logmessage/LogMessagePlugIn.h"
-#include "plugins/modulestatisticsviewer/ModuleStatisticsViewerPlugIn.h"
+#ifdef HAVE_QWT5QT4
+    #include "plugins/iruscharts/IrUsChartsPlugIn.h"
+    #include "plugins/modulestatisticsviewer/ModuleStatisticsViewerPlugIn.h"
+#endif
 #include "plugins/objxviewer/OBJXViewerPlugIn.h"
 #include "plugins/player/PlayerPlugIn.h"
 #include "plugins/scnxviewer/SCNXViewerPlugIn.h"
+#include "plugins/sessionviewer/SessionViewerPlugIn.h"
 #include "plugins/sharedimageviewer/SharedImageViewerPlugIn.h"
 #include "plugins/spy/SpyPlugIn.h"
 #include "plugins/streetmapviewer/StreetMapPlugIn.h"
@@ -73,14 +75,17 @@ class PlugIn;
             m_listOfAvailablePlugIns.push_back("Controller");
             m_listOfAvailablePlugIns.push_back("BirdsEyeMap");
             m_listOfAvailablePlugIns.push_back("EnvironmentViewer");
+#ifdef HAVE_QWT5QT4
             m_listOfAvailablePlugIns.push_back("IrUsCharts");
             m_listOfAvailablePlugIns.push_back("ModuleStatisticsViewer");
+#endif
             m_listOfAvailablePlugIns.push_back("OBJXViewer");
             m_listOfAvailablePlugIns.push_back("SCNXViewer");
             m_listOfAvailablePlugIns.push_back("IrUsMap");
             m_listOfAvailablePlugIns.push_back("LiveFeed");
             m_listOfAvailablePlugIns.push_back("LogMessage");
             m_listOfAvailablePlugIns.push_back("Player");
+            m_listOfAvailablePlugIns.push_back("SessionViewer");
             m_listOfAvailablePlugIns.push_back("SharedImageViewer");
             m_listOfAvailablePlugIns.push_back("Spy");
             m_listOfAvailablePlugIns.push_back("StreetMap");
@@ -89,14 +94,17 @@ class PlugIn;
             m_listOfDescriptions["Controller"] = tr("This plugin allows the control of the vehicle by the arrow keys.").toStdString();
             m_listOfDescriptions["BirdsEyeMap"] = tr("This plugin shows the entire environment in 2D.").toStdString();
             m_listOfDescriptions["EnvironmentViewer"] = tr("This plugin shows the entire environment in 3D.").toStdString();
+#ifdef HAVE_QWT5QT4
             m_listOfDescriptions["IrUsCharts"] = tr("This plugin displays the values of SensorBoardData over time.").toStdString();
             m_listOfDescriptions["ModuleStatisticsViewer"] = tr("This plugin shows module statistics.").toStdString();
+#endif
             m_listOfDescriptions["OBJXViewer"] = tr("This plugin shows .objx files.").toStdString();
             m_listOfDescriptions["SCNXViewer"] = tr("This plugin shows .scnx files.").toStdString();
             m_listOfDescriptions["IrUsMap"] = tr("This plugin displays the current irus readings.").toStdString();
             m_listOfDescriptions["LiveFeed"] = tr("This plugin displays all distributed visitable messages.").toStdString();
             m_listOfDescriptions["LogMessage"] = tr("This plugin displays log messages from components.").toStdString();
             m_listOfDescriptions["Player"] = tr("This plugin replays previously recorded files.").toStdString();
+            m_listOfDescriptions["SessionViewer"] = tr("This plugin displays currently running modules.").toStdString();
             m_listOfDescriptions["SharedImageViewer"] = tr("This plugin displays shared images.").toStdString();
             m_listOfDescriptions["Spy"] = tr("This plugin displays all distributed containers.").toStdString();
             m_listOfDescriptions["StreetMap"] = tr("This plugin visualizes the environment data using a map tile provider.").toStdString();
@@ -143,6 +151,7 @@ class PlugIn;
                 cerr << "Creating EnvironmentViewer" << endl;
                 plugIn = std::shared_ptr<PlugIn>(new environmentviewer::EnvironmentViewerPlugIn("EnvironmentViewer", m_kvc, m_parent));
             }
+#ifdef HAVE_QWT5QT4
             else if (name == "IrUsCharts") {
                 cerr << "Creating IrUsCharts" << endl;
                 plugIn = std::shared_ptr<PlugIn>(new iruscharts::IrUsChartsPlugIn("IrUsCharts", m_kvc, m_parent));
@@ -151,6 +160,7 @@ class PlugIn;
                 cerr << "Creating ModuleStatisticsViewer" << endl;
                 plugIn = std::shared_ptr<PlugIn>(new modulestatisticsviewer::ModuleStatisticsViewerPlugIn("ModuleStatisticsViewer", m_kvc, m_parent));
             }
+#endif
             else if (name == "OBJXViewer") {
                 cerr << "Creating OBJXViewer" << endl;
                 plugIn = std::shared_ptr<PlugIn>(new objxviewer::OBJXViewerPlugIn("OBJXViewer", m_kvc, m_parent));
@@ -171,6 +181,9 @@ class PlugIn;
             } else if (name == "Player") {
                 cerr << "Creating Player" << endl;
                 plugIn = std::shared_ptr<PlugIn>((PlugIn*)(new player::PlayerPlugIn("Player", m_kvc, m_conference, m_parent)));
+            } else if (name == "SessionViewer") {
+                cerr << "Creating SessionViewer" << endl;
+                plugIn = std::shared_ptr<PlugIn>(new sessionviewer::SessionViewerPlugIn("SessionViewer", m_kvc, m_parent));
             } else if (name == "SharedImageViewer") {
                 cerr << "Creating SharedImageViewer" << endl;
                 plugIn = std::shared_ptr<PlugIn>(new sharedimageviewer::SharedImageViewerPlugIn("SharedImageViewer", m_kvc, m_parent));

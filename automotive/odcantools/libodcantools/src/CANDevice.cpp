@@ -95,7 +95,7 @@ namespace automotive {
                     CLOG1 << "[CANDevice] ID = " << message.Msg.ID << ", LEN = " << message.Msg.LEN << ", DATA = ";
 
                     // Set time stamp from driver.
-                    TimeStamp driverTimeStamp(message.dwTime, message.wUsec);
+                    TimeStamp driverTimeStamp(message.dwTime, message.wUsec, 0);
 
                     // Create generic CAN message representation.
                     GenericCANMessage gcm;
